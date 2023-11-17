@@ -47,6 +47,9 @@ import csv
 meshOrder = ['soma', 'dend', 'spine', 'psd', 'psd_dend', 'presyn_dend', 'presyn_spine', 'endo']
 
 knownFieldsDefault = {
+    'X':('HHChannelBase', 'getX', 1, 'Gate value (1)', 0, 1 ),
+    'Y':('HHChannelBase', 'getY', 1, 'Gate value (1)', 0, 1 ),
+    'Z':('HHChannelBase', 'getZ', 1, 'Gate value (1)', 0, 1 ),
     'Vm':('CompartmentBase', 'getVm', 1000, 'Memb. Potential (mV)', -80.0, 40.0 ),
     'initVm':('CompartmentBase', 'getInitVm', 1000, 'Init. Memb. Potl (mV)', -80.0, 40.0 ),
     'Im':('CompartmentBase', 'getIm', 1e9, 'Memb. current (nA)', -10.0, 10.0 ),
@@ -865,7 +868,7 @@ print( "Wall Clock Time = {:8.2f}, simtime = {:8.3f}".format( time.time() - _sta
             return (), ""
 
         kf = knownFields[field] # Find the field to decide type.
-        if kf[0] in ['CaConcBase', 'ChanBase', 'NMDAChan', 'VClamp']:
+        if kf[0] in ['CaConcBase', 'ChanBase', 'NMDAChan', 'VClamp', 'HHChannelBase']:
             objList = self._collapseElistToPathAndClass( comptList, plotSpec.relpath, kf[0] )
             return objList, kf[1]
         elif field in [ 'n', 'conc', 'nInit', 'concInit', 'volume', 'increment']:
@@ -934,6 +937,9 @@ print( "Wall Clock Time = {:8.2f}, simtime = {:8.3f}".format( time.time() - _sta
 
     def _buildPlots( self ):
         knownFields = {
+            'X':('HHChannelBase', 'getX', 1, 'Gate value (1)'),
+            'Y':('HHChannelBase', 'getY', 1, 'Gate value (1)'),
+            'Z':('HHChannelBase', 'getZ', 1, 'Gate value (1)'),
             'Vm':('CompartmentBase', 'getVm', 1000, 'Memb. Potential (mV)' ),
             'spikeTime':('CompartmentBase', 'getVm', 1, 'Spike Times (s)'),
             'Im':('CompartmentBase', 'getIm', 1e9, 'Memb. current (nA)' ),
