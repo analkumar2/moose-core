@@ -18,16 +18,16 @@
 #include <stdexcept>
 #include <csignal>
 
-#include "../external/pybind11/include/pybind11/functional.h"
-#include "../external/pybind11/include/pybind11/numpy.h"
-#include "../external/pybind11/include/pybind11/pybind11.h"
-#include "../external/pybind11/include/pybind11/stl.h"
+#include <pybind11/functional.h>
+#include <pybind11/numpy.h>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 namespace py = pybind11;
 
 // See
 // https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html#binding-stl-containers
-// #include "../external/pybind11/include/pybind11/stl_bind.h"
+// #include <pybind11/stl_bind.h>
 
 #include "../basecode/header.h"
 #include "../basecode/global.h"
@@ -613,7 +613,7 @@ string mooseShowMsg(const ObjId& obj)
             cerr << "No Msg found on " << obj.path() << endl;
             continue;
         }
-        ss << fmt::format("  {0}, [{1}] <-- {2}, [{3}]\n", msg->getE1().path(),
+        ss << fmt::format("  {0}, [{1}] --> {2}, [{3}]\n", msg->getE1().path(),
                           moose::vectorToCSV<string>(msg->getSrcFieldsOnE1()),
                           msg->getE2().path(),
                           moose::vectorToCSV<string>(msg->getDestFieldsOnE2()));
